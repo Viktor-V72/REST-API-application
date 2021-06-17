@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { addContactValidation, patchPostValidation } = require('../../model/validationContacts')
+const { addContactValidation, patchPostValidation } = require('../../assets/validationContacts')
 
 const {
   listContacts,
@@ -9,7 +9,7 @@ const {
   removeContact,
   addContact,
   updateContact
-} = require('../../model/index')
+} = require('../../index')
 
 router.get('/', async (req, res, next) => {
   try {
