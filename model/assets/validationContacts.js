@@ -34,14 +34,14 @@ module.exports = {
         .max(30)
         .optional(),
       email: Joi.string()
-        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'ru', 'ua'] } })
         .optional(),
-      phone: Joi.number()
-        .integer()
+      phone: Joi.string()
+        .alphanum()
         .min(10)
         .max(15)
         .optional(),
-    })
+    }).min(1)
 
     const validationResult = schema.validate(req.body)
     if (validationResult.error) {
