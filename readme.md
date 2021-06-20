@@ -1,31 +1,30 @@
-## GoIT Node.js Course Template Homework
+## Application for working with contacts through the MongoDB database
 
-Выполните форк этого репозитория для выполнения домашних заданий (2-6)
-Форк создаст репозиторий на вашем http://github.com
+Available features:
 
-Добавьте ментора в коллаборацию
+- Get list of all contacts
+- Find the required contact by ID
+- create contact (name, email, phone)
+- Update contact (name/email/phone)
+- update contact's status (add it to favorites)
+- delete contact
 
-Для каждой домашней работы создавайте свою ветку.
 
-- hw02
-- hw03
-- hw04
-- hw05
-- hw06
+### Used NPM packages:
+- eslint
+- nodemon
+- cors
+- cross-env
+- dotenv
+- express
+- joi
+- mongoose
+- morgan
 
-Каждая новая ветка для дз должна делаться с master
 
-После того как вы закончили выполнять домашнее задание в своей ветке, необходимо сделать пулл-реквест (PR). Потом добавить ментора для ревью кода. Только после того как ментор заапрувит PR, вы можете выполнить мердж ветки с домашним заданием в мастер.
+### Commands:
 
-Внимательно читайте комментарии ментора. Исправьте замечания и сделайте коммит в ветке с домашним заданием. Изменения подтянуться в PR автоматически после того как вы отправите коммит с исправлениями на github
-После исправления снова добавьте ментора на ревью кода.
-
-- При сдаче домашней работы есть ссылка на PR
-- JS-код чистый и понятный, для форматирования используется Prettier
-
-### Команды:
-
-- `npm start` &mdash; старт сервера в режиме production
-- `npm run start:dev` &mdash; старт сервера в режиме разработки (development)
-- `npm run lint` &mdash; запустить выполнение проверки кода с eslint, необходимо выполнять перед каждым PR и исправлять все ошибки линтера
-- `npm lint:fix` &mdash; та же проверка линтера, но с автоматическими исправлениями простых ошибок
+- `npm start` &mdash; start server in production mode
+- `npm run start:dev` &mdash; start server in development mode
+- `npm run lint` &mdash; launch eslint check for all mistakes and errors
+- `npm lint:fix` &mdash; same eslint check , but with autofix
