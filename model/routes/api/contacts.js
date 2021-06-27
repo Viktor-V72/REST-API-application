@@ -10,18 +10,21 @@ const {
   updateStatusContactController
 } = require('../../controllers/contactsController')
 
-const { addContactValidation, patchPostValidation, patchStatusValidation } = require('../../assets/validationContacts')
+const {
+  addContactValidation, patchPostValidation, patchStatusValidation
+} = require('../../assets/validationContacts')
+
+const {
+  authMiddleware,
+} = require('../../assets/authMiddleware')
+
+router.use(authMiddleware)
 
 router.get('/', getContactsController)
-
 router.get('/:contactId', getContactByIdController)
-
 router.post('/', addContactValidation, addContactController)
-
 router.delete('/:contactId', deleteContactController)
-
 router.patch('/:contactId', patchPostValidation, changeContactController)
-
 router.patch('/:contactId/favorite', patchStatusValidation, updateStatusContactController)
 
 module.exports = router
