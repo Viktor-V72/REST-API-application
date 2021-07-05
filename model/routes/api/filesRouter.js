@@ -3,7 +3,7 @@ const multer = require('multer')
 const { v4: uuidv4 } = require('uuid')
 const path = require('path')
 
-const FILE_DIR = path.resolve('./tmp')
+const FILE_DIR = path.resolve('./public/avatars')
 
 const router = new express.Router()
 
