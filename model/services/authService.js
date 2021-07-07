@@ -48,9 +48,15 @@ const currentUser = async (id, token) => {
   return data
 }
 
+const updateAvatar = async (id, token, url) => {
+  const data = await User.findByIdAndUpdate({ _id: id, token }, { avatarURL: url })
+  return data
+}
+
 module.exports = {
   registration,
   login,
   logout,
-  currentUser
+  currentUser,
+  updateAvatar
 }

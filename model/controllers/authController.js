@@ -1,8 +1,15 @@
+const path = require('path')
+const fs = require('fs').promises
+const jimp = require('jimp')
+
+const IMG_DIR = path.resolve('./public/avatars')
+
 const {
   registration,
   login,
   logout,
-  currentUser
+  currentUser,
+  updateAvatar
 } = require('../services/authService')
 
 const registrationController = async (req, res, next) => {
@@ -54,9 +61,32 @@ const currentUserController = async (req, res, next) => {
   }
 }
 
+const avatarController = async (req, res, next) => {
+  try {
+    if (req.file) {
+      const { file } = req
+      const img = await jimp.read(file.path)
+      await img
+        .autocrop()
+        .cover(
+          250,
+          250,
+          jimp.HORIZONTAL_ALIGN_CENTER || jimp.VERTICAL_ALIGN_MIDDLE,
+        )
+        .writeAsync(file.path)
+      await fs.rename(file.path, path.join(IMG_DIR, file.originalname))
+      const { avatarURL } = await updateAvatar(req.user._id, req.token, file.path)
+      return res.json({ status: 'success', avatarURL })
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   registrationController,
   loginController,
   logoutController,
-  currentUserController
+  currentUserController,
+  avatarController
 }
