@@ -9,7 +9,9 @@ const {
   login,
   logout,
   currentUser,
-  updateAvatar
+  updateAvatar,
+  verifyToken,
+  resendVerifyToken
 } = require('../services/authService')
 
 const registrationController = async (req, res, next) => {
@@ -83,10 +85,34 @@ const avatarController = async (req, res, next) => {
   }
 }
 
+const verificationController = async (req, res, next) => {
+  try {
+    const result = await verifyToken(req.params.verificationToken)
+    if (!result) {
+      res.status(404).json({ message: 'User not found' })
+    }
+    res.status(200).json({ message: 'Verification successful' })
+  } catch (error) {
+    next(error)
+  }
+}
+
+const resendVerificationController = async (req, res, next) => {
+  try {
+    await resendVerifyToken(req.body.email)
+
+    res.status(200).json({ message: 'Verification email sent' })
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   registrationController,
   loginController,
   logoutController,
   currentUserController,
-  avatarController
+  avatarController,
+  verificationController,
+  resendVerificationController
 }
