@@ -7,12 +7,14 @@ const {
   logoutController,
   currentUserController,
   avatarController,
-
+  verificationController,
+  resendVerificationController
 } = require('../../controllers/authController')
 
 const {
   signupValidation,
   loginValidation,
+  resendValidation
 } = require('../../assets/validationUsers')
 
 const {
@@ -28,5 +30,7 @@ router.post('/login', loginValidation, loginController)
 router.post('/logout', authMiddleware, logoutController)
 router.get('/current', authMiddleware, currentUserController)
 router.patch('/avatars', authMiddleware, uploadMiddleware.single('avatar'), avatarController)
+router.get('/verify/:verificationToken', verificationController)
+router.post('/verify', resendValidation, resendVerificationController)
 
 module.exports = router
